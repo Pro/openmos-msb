@@ -12,6 +12,7 @@ import static org.eclipse.milo.opcua.stack.core.types.builtin.unsigned.Unsigned.
 import com.google.common.collect.ImmutableList;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.EnumSet;
 import java.util.concurrent.CompletableFuture;
 import java.util.Arrays;
@@ -361,8 +362,8 @@ public class OPCServer
 //    X509IdentityProvider x509IdentityProvider = new X509IdentityProvider("C:\\NetBeansProjects\\msb\\openssl_crt.der",
 //            "C:\\NetBeansProjects\\msb\\herong.key");
     String OPCUA_KEY_PATH = ConfigurationLoader.getMandatoryProperty("openmos.msb.opcua.key.path");    
-    X509IdentityProvider x509IdentityProvider = new X509IdentityProvider(OPCUA_KEY_PATH + "\\openssl_crt.der",
-            OPCUA_KEY_PATH + "\\herong.key");
+    X509IdentityProvider x509IdentityProvider = new X509IdentityProvider(Paths.get(OPCUA_KEY_PATH, "openssl_crt.der").toString(),
+        Paths.get(OPCUA_KEY_PATH, "herong.key").toString());
 
     X509Certificate cert = x509IdentityProvider.getCertificate();
     KeyPair keyPair = new KeyPair(cert.getPublicKey(), x509IdentityProvider.getPrivateKey());
