@@ -185,8 +185,8 @@ public class MSB_gui extends javax.swing.JFrame implements Observer
           InetAddress addr;
           addr = InetAddress.getLocalHost();
           String HostName = addr.getHostName();
-          msbServerAddress.setText("opc.tcp://" + HostName + ":12637/MSB-OPCUA-SERVER");
-          ldsSserverAddress.setText("opc.tcp://" + HostName + ":4840");
+          msbServerAddress.setText(ConfigurationLoader.getMandatoryProperty("openmos.msb.opcua.server"));
+          ldsSserverAddress.setText(ConfigurationLoader.getMandatoryProperty("openmos.msb.discovery.service"));
       } catch (UnknownHostException ex) {
           System.out.println("hostname can not be resolved! " + ex);
       }
